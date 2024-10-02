@@ -1,19 +1,18 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import dts from 'vite-plugin-dts'
-import { resolve } from 'path'
+import * as path from 'path'
 
 export default defineConfig({
   plugins: [
     react(),
-    dts({
-      insertTypesEntry: true,
-    }),
+    dts({ rollupTypes: true }),
   ],
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/index.ts'),
+      entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'PubSubEmitter',
+      formats: ['cjs', 'umd'],
       fileName: (format) => `pubsub-emitter.${format}.js`,
     },
     rollupOptions: {
@@ -25,10 +24,7 @@ export default defineConfig({
         },
       },
     },
-  },
-  resolve: {
-    alias: {
-      '@': resolve(__dirname, 'src'),
-    },
+    sourcemap: true,
+    minify: 'esbuild',
   },
 })

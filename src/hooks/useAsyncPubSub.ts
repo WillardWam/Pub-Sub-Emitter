@@ -1,4 +1,7 @@
-import { useState, useEffect } from 'react';
+
+import React from 'react';
+const { useState, useEffect } = React;
+
 import { pubSubStore, Channel } from '../PubSubStore';
 
 interface Config<T, A extends any[]> {

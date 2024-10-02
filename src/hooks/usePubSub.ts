@@ -1,4 +1,6 @@
-import { useEffect, useState, useCallback } from 'react';
+
+import React from 'react';
+const { useEffect, useState, useCallback } = React;
 import { pubSubStore, Channel } from '../PubSubStore';
 
 type PubSubReturnType<T, A extends any[] = any[]> = [
